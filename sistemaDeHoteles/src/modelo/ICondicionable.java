@@ -1,8 +1,8 @@
-package pruebaCondicion;
+package modelo;
 
 
 public interface ICondicionable {
 
-		public boolean satisface(Hotel h);
+		public boolean satisface(Habitacion habitacion);
 		public ICondicionable compose(ICondicionable ic);
 }

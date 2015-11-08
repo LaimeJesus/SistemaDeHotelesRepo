@@ -1,4 +1,4 @@
-package pruebaCondicion;
+package modelo;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class CondicionCompuesta extends Condicion {
 	}
 
 	@Override
-	public boolean satisface(Hotel h) {
+	public boolean satisface(Habitacion h) {
 		boolean satisfy = true;
 		for(ICondicionable ic : this.getCondiciones()){
 			satisfy = satisfy && ic.satisface(h);

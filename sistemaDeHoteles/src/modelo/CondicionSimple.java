@@ -1,4 +1,4 @@
-package pruebaCondicion;
+package modelo;
 
 abstract class CondicionSimple{
 	

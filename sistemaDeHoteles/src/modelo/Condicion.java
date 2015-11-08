@@ -1,4 +1,4 @@
-package pruebaCondicion;
+package modelo;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Condicion implements ICondicionable{
 
-	public abstract boolean satisface(Hotel h);
+	public abstract boolean satisface(Habitacion h);
 	public ICondicionable compose(ICondicionable ic){
 		List<ICondicionable> cs = new ArrayList<ICondicionable>();
 		cs.add(this);
