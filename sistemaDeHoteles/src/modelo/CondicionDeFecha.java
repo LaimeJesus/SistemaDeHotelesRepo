@@ -4,35 +4,26 @@ import java.util.Date;
 
 public class CondicionDeFecha extends Condicion{
 	
-	private Date fechaDeEntrada;
-	private Date fechaDeSalida;
+	private Periodo periodo;
 	
-	public CondicionDeFecha(Date fEntrada, Date fSalida){
-		this.setFechaInicial(fEntrada);
-		this.setFechaSalida(fSalida);
+	public CondicionDeFecha(Periodo p){
+		this.setCondicion(p);
 	}
-	
-	public void setFechaInicial(Date f){
-		this.fechaDeEntrada = f;
 		
+	private void setCondicion(Periodo p) {
+		// TODO Auto-generated method stub
+		this.periodo = p;
 	}
-	public void setFechaSalida(Date f){
-		this.fechaDeSalida = f;
-	}
-	
-	
+
 	//arreglar y usar periodo desde un principio
 	@Override
 	public boolean satisface(Habitacion h) {
-		return h.estaDisponible(new Periodo(this.getFechaDeEntrada(),this.getFechaDeSalida()));
+		return h.estaDisponible(this.getCondicion());
 	}
 
-	private Date getFechaDeSalida() {
-		return this.fechaDeSalida;
-	}
-
-	private Date getFechaDeEntrada() {
+	private Periodo getCondicion() {
 		// TODO Auto-generated method stub
-		return this.fechaDeEntrada;
+		return this.periodo;
 	}
+	
 }

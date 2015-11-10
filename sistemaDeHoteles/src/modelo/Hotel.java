@@ -14,7 +14,6 @@ public class Hotel {
 		this.ciudad = ciudad;
 		this.habitaciones = list;
 		this.name = name;
-		this.cantidadDeHuespedes = 0;
 	}
 	
 	public String getNombreDeCiudad(){

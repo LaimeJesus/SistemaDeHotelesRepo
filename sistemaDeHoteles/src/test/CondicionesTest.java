@@ -3,6 +3,8 @@ package test;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.ReadableInstant;
 import org.junit.Before;
 
 import junit.framework.TestCase;
@@ -13,14 +15,15 @@ import modelo.CondicionDeNombre;
 import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.ICondicionable;
+import modelo.Periodo;
 
 public class CondicionesTest extends TestCase{
 
 	ArrayList<Habitacion> list;
 	Hotel hotel;
 	Habitacion habitacion;
-	Date f1;
-	Date f2;
+	ReadableInstant f1;
+	ReadableInstant f2;
 	CondicionDeDestino condicionDeDestino;
 	CondicionDeFecha condicionDeFecha;
 	CondicionDeNombre condicionDeNombre;
@@ -35,9 +38,9 @@ public class CondicionesTest extends TestCase{
 		list = new ArrayList<Habitacion>();
 		hotel = new Hotel("pepe", "Buenos Aires", list);
 		habitacion = new Habitacion(hotel,4);
-		f1 = new Date(2010, 10, 15);
-		f2 = new Date(2011, 1, 1);
-		condicionDeFecha = new CondicionDeFecha(f1,f2);
+		f1 = new DateTime(2010, 10, 15, 1 ,1);
+		f2 = new DateTime(2011, 1, 1, 1, 1);
+		condicionDeFecha = new CondicionDeFecha(new Periodo(f1,f2));
 		condicionDeNombre = new CondicionDeNombre("pepe");
 		condicionDeHuespedes = new CondicionDeHuespedes(4);
 		condicionDeHuespedes.setCondicion(4);
