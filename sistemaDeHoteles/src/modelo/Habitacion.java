@@ -29,6 +29,7 @@ public class Habitacion {
 	public String getHotelName() {
 		return this.getHotel().getName();
 	}
+	
 	public String getHotelNombreDeCiudad(){
 		return this.getHotel().getNombreDeCiudad();
 	}
@@ -37,6 +38,7 @@ public class Habitacion {
 		// TODO Auto-generated method stub
 		return this.hotel;
 	}
+	
 	//hay que arreglarW
 	public boolean estaDisponible(Periodo p) {
 		// TODO Auto-generated method stub
@@ -61,8 +63,18 @@ public class Habitacion {
 		return precio;
 	}
 
-	public void setPrecioBase(Integer i) {
-		this.precioBase = i;
+	/*
+	 * setea el precioBase por noche de la habitacion
+	 */
+	public void setPrecioBase(Integer precioBase) {
+		this.precioBase = precioBase;
+	}
+
+	/*
+	 * agrega una modificacion a las modificaciones de precio
+	 */
+	public void agregarModificacion(IModificadorDePrecio modificacion) {
+		modificadores.add(modificacion);
 	}
 
 }

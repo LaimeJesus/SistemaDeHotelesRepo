@@ -23,10 +23,19 @@ public class Periodo {
 	 * dice si una fecha pertenece al periodo
 	 */
 	public boolean perteneceAlPeriodo(ReadableInstant fecha) {
-		// TODO Auto-generated method stub
 		return fecha.isAfter(fechaInicio) && fechaFin.isAfter(fecha);
 	}
 
+	/*
+	 * dice la cantidad de dias que hay en un periodo
+	 */
+	public Integer getCantidadDeDias() {
+		return getFechasContenidas().size();
+	}
+	
+	/*
+	 * retorna una coleccion con todas las fechas contenidas en el periodo
+	 */
 	public List<DateTime> getFechasContenidas() {
 		ArrayList<DateTime> dts = new ArrayList<DateTime>();
 		DateTime curr = (DateTime) fechaInicio;
@@ -39,6 +48,10 @@ public class Periodo {
 		return dts;
 	}
 
+	/*
+	 * dada una fecha curr, retorna la fecha que corresponde al dia siguiente
+	 * NOTA: NO siempre se devuelve una fecha dentro del periodo
+	 */
 	private DateTime nextDayInPeriodo(DateTime curr) {
 		return curr.plusDays(1);
 	}

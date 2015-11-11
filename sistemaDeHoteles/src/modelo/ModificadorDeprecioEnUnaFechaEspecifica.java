@@ -22,7 +22,7 @@ public class ModificadorDeprecioEnUnaFechaEspecifica implements IModificadorDePr
 	@Override
 	public Integer getModificacion(ReadableInstant fecha) {
 		// ver siperimplementor
-		if (this.fecha == fecha) {
+		if (this.fecha.equals(fecha)) {
 			return modificacion;
 		}
 		return 0;
