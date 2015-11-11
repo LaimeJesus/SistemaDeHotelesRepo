@@ -56,4 +56,16 @@ public class Periodo {
 		return curr.plusDays(1);
 	}
 
+	public Boolean coincideCon(Periodo periodo) {
+		return !(periodo.getFechaFin().isAfter(fechaFin) || fechaInicio.isAfter(periodo.getFechaFin()));
+	}
+
+	private ReadableInstant getFechaFin() {
+		return fechaFin;
+	}
+
+	public ReadableInstant getFechaInicio() {
+		return fechaInicio;
+	}
+
 }

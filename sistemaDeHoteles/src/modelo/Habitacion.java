@@ -9,8 +9,8 @@ public class Habitacion {
 	private Hotel hotel;
 	private Integer limiteHuespedes;
 	private Integer precioBase;
-	private ArrayList<IModificadorDePrecio> modificadores = 
-			new ArrayList<IModificadorDePrecio>();
+	private ArrayList<IModificadorDePrecio> modificadores = new ArrayList<IModificadorDePrecio>();
+	private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 	
 	public Habitacion(Hotel h, Integer limiteHuespedes){
 		this.setHotel(h);
@@ -39,12 +39,19 @@ public class Habitacion {
 		return this.hotel;
 	}
 	
-	//hay que arreglarW
-	public boolean estaDisponible(Periodo p) {
-		// TODO Auto-generated method stub
-		//hay que agregar cosas
-		return true;
+	/*
+	 * dice si esta disponible en un periodo
+	 */
+	public Boolean estaDisponible(Periodo periodo) {
+		Boolean d = true;
+		
+		for (Reserva r : reservas) {
+			d = d && !r.getPeriodo().coincideCon(periodo);
+		}
+		
+		return d;
 	}
+	
 	public Integer getLimiteDeHuespedes() {
 		// TODO Auto-generated method stub
 		return this.limiteHuespedes;
@@ -75,6 +82,13 @@ public class Habitacion {
 	 */
 	public void agregarModificacion(IModificadorDePrecio modificacion) {
 		modificadores.add(modificacion);
+	}
+
+	/*
+	 * agrega una reserva
+	 */
+	public void agregarReserva(Reserva reserva) {
+		reservas.add(reserva);
 	}
 
 }
