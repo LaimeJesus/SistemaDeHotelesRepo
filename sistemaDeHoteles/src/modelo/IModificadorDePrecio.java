@@ -8,6 +8,6 @@ public interface IModificadorDePrecio {
 	/*
 	 * obtiene la modificacion del precio segun una fecha
 	 */
-	public Object getModificacion(ReadableInstant localDate);
+	public Integer getModificacion(ReadableInstant localDate);
 
 }

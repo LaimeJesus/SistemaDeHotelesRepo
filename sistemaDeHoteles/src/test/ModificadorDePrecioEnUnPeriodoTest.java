@@ -23,7 +23,7 @@ public class ModificadorDePrecioEnUnPeriodoTest {
 	 * y veo que me de la modificacion que le setie
 	 */
 	public void test_crearUnModificadorConUnPeriodoYVerQueMeDaSuModificacionSiLePasoUnaFechaQueEstaEnEsePeriodo() {
-		assertEquals(5,modificador.getModificacion(fecha));
+		assertEquals(Integer.valueOf(5),modificador.getModificacion(fecha));
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class ModificadorDePrecioEnUnPeriodoTest {
 	 * y veo que me de 0 de modificacion
 	 */
 	public void test_crearUnModificadorConUnPeriodoDarleUnaFechaQueNoEsteYVerQueMeDaCeroDeModificacion() {
-		assertEquals(0,modificador.getModificacion(new DateTime(1000,1,1,0,0)));
+		assertEquals(Integer.valueOf(0),modificador.getModificacion(new DateTime(1000,1,1,0,0)));
 	}
 
 }

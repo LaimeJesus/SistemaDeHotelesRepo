@@ -1,8 +1,16 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import org.joda.time.DateTime;
+
 public class Habitacion {
+	
 	private Hotel hotel;
 	private Integer limiteHuespedes;
+	private Integer precioBase;
+	private ArrayList<IModificadorDePrecio> modificadores = 
+			new ArrayList<IModificadorDePrecio>();
 	
 	public Habitacion(Hotel h, Integer limiteHuespedes){
 		this.setHotel(h);
@@ -29,7 +37,7 @@ public class Habitacion {
 		// TODO Auto-generated method stub
 		return this.hotel;
 	}
-	//hay que arreglar
+	//hay que arreglarW
 	public boolean estaDisponible(Periodo p) {
 		// TODO Auto-generated method stub
 		//hay que agregar cosas
@@ -38,6 +46,23 @@ public class Habitacion {
 	public Integer getLimiteDeHuespedes() {
 		// TODO Auto-generated method stub
 		return this.limiteHuespedes;
+	}
+
+	/*
+	 * dice el precio en una fecha d
+	 */
+	public Integer getPrecioEn(DateTime d) {
+		Integer precio = precioBase;
+		
+		for (IModificadorDePrecio m : modificadores) {
+			precio = precio + m.getModificacion(d);
+		}
+		
+		return precio;
+	}
+
+	public void setPrecioBase(Integer i) {
+		this.precioBase = i;
 	}
 
 }

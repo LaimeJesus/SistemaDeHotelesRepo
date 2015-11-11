@@ -23,7 +23,7 @@ public class ModificadorDePrecioEnUnaFechaEspecificaTest {
 	 * veo que sea la que le setie
 	 */
 	public void test_crearUnaModificacionEnUnaFechaEspecifica() {
-		assertEquals(5,modificador.getModificacion(fecha));
+		assertEquals(Integer.valueOf(5),modificador.getModificacion(fecha));
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class ModificadorDePrecioEnUnaFechaEspecificaTest {
 	 * devuelva 0
 	 */
 	public void test_crearUnaModificacionEnUnaFechaEspecificaYDarleOtraFecha() {
-		assertEquals(0,modificador.getModificacion(new DateTime(2000,1,1,1,1)));
+		assertEquals(Integer.valueOf(0),modificador.getModificacion(new DateTime(2000,1,1,1,1)));
 	}
 
 }

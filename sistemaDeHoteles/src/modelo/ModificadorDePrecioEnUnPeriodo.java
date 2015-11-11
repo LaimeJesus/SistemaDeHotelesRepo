@@ -17,7 +17,7 @@ public class ModificadorDePrecioEnUnPeriodo implements IModificadorDePrecio {
 	}
 
 	@Override
-	public Object getModificacion(ReadableInstant fecha) {
+	public Integer getModificacion(ReadableInstant fecha) {
 		if (periodo.perteneceAlPeriodo(fecha)) {
 			return modificacion;
 		}

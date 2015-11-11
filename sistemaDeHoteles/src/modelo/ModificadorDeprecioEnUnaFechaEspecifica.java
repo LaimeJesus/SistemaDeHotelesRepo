@@ -5,7 +5,7 @@ import org.joda.time.ReadableInstant;
 public class ModificadorDeprecioEnUnaFechaEspecifica implements IModificadorDePrecio {
 
 	private Object fecha;
-	private Object modificacion;
+	private Integer modificacion;
 
 	/*
 	 * crea una nueva instancia de ModificadorDePrecioEnUnaFechaEspecifica en una
@@ -20,7 +20,7 @@ public class ModificadorDeprecioEnUnaFechaEspecifica implements IModificadorDePr
 	}
 
 	@Override
-	public Object getModificacion(ReadableInstant fecha) {
+	public Integer getModificacion(ReadableInstant fecha) {
 		// ver siperimplementor
 		if (this.fecha == fecha) {
 			return modificacion;
