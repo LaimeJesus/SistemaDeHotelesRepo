@@ -12,7 +12,7 @@ import modelo.ModificadorDeprecioEnUnaFechaEspecifica;
 
 public class ModificadorDePrecioEnUnaFechaEspecificaTest {
 
-	private ReadableInstant fecha;
+	private ReadableInstant fecha = new DateTime(2000,5,5,5,5);
 	
 	private IModificadorDePrecio modificador = 
 			new ModificadorDeprecioEnUnaFechaEspecifica(fecha,5);
