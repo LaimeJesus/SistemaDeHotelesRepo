@@ -17,7 +17,7 @@ public class CondicionDeDestino extends Condicion{
 
 	@Override
 	public boolean satisface(Habitacion h) {
-		return h.getHotelNombreDeCiudad() == this.getCondicion();
+		return this.getCondicion().contains(h.getHotelNombreDeCiudad());
 	}
 
 

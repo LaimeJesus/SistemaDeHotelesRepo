@@ -10,18 +10,15 @@ public class CondicionDeNombre extends Condicion{
 	}
 
 	private void setCondicion(String nombre) {
-		// TODO Auto-generated method stub
 		this.condicionNombre = nombre;
 	}
 
 	@Override
 	public boolean satisface(Habitacion h) {
-		// TODO Auto-generated method stub
-		return this.getNombre() == h.getHotelName();
+		return h.getHotelName().equals((this.getCondicion()));
 	}
 
-	private String getNombre() {
-		// TODO Auto-generated method stub
+	private String getCondicion() {
 		return this.condicionNombre;
 	}
 

@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Date;
-
 public class CondicionDeFecha extends Condicion{
 	
 	private Periodo periodo;
@@ -11,7 +9,6 @@ public class CondicionDeFecha extends Condicion{
 	}
 		
 	private void setCondicion(Periodo p) {
-		// TODO Auto-generated method stub
 		this.periodo = p;
 	}
 
@@ -22,7 +19,6 @@ public class CondicionDeFecha extends Condicion{
 	}
 
 	private Periodo getCondicion() {
-		// TODO Auto-generated method stub
 		return this.periodo;
 	}
 	

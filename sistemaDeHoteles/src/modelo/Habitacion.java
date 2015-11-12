@@ -18,7 +18,6 @@ public class Habitacion {
 	}
 
 	private void setLimiteHuespedes(Integer limiteHuespedes) {
-		// TODO Auto-generated method stub
 		this.limiteHuespedes = limiteHuespedes;
 	}
 
@@ -35,7 +34,6 @@ public class Habitacion {
 	}
 
 	public Hotel getHotel() {
-		// TODO Auto-generated method stub
 		return this.hotel;
 	}
 	
@@ -53,7 +51,6 @@ public class Habitacion {
 	}
 	
 	public Integer getLimiteDeHuespedes() {
-		// TODO Auto-generated method stub
 		return this.limiteHuespedes;
 	}
 
