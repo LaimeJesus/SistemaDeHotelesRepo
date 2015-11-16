@@ -25,12 +25,21 @@ public class HabitacionTest {
 	
 	/*
 	 * creo una habitacion, le hago una reserva, pregunto si esta disponible en un periodo que este reservada
-	 * y veo que me diga que no
+	 * y veo que me diga que no.
+	 * tambien, le pregunto si esta reservada en otro periodo y veo que me diga que esta disponible
 	 */
 	@Test
 	public void test_veoQueUnaHabitacionDigaQueNoEstaDisponible() {
 		habitacion.agregarReserva(reserva);
 		assertFalse(habitacion.estaDisponible(new Periodo(new DateTime(2000,1,1,1,1), new DateTime(2000,1,1,2,1))));
+		assertTrue(habitacion.estaDisponible(new Periodo(new DateTime(1500,1,1,1,1), new DateTime(1500,1,10,1,1))));
+	}
+	
+	@Test
+	public void test_veoQuePuedaQuitarleUnaReservaYaHechaAUnaHabitacionDesdeLaReserva() {
+		habitacion.agregarReserva(reserva);
+		reserva.quitarReserva();
+		assertTrue(habitacion.estaDisponible(new Periodo(new DateTime(2000,1,1,1,1), new DateTime(2001,1,1,1,1))));
 	}
 
 }

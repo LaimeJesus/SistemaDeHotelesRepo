@@ -44,7 +44,7 @@ public class Habitacion {
 		Boolean d = true;
 		
 		for (Reserva r : reservas) {
-			d = d && !r.getPeriodo().coincideCon(periodo);
+			d = d && !(r.getPeriodo().coincideCon(periodo));
 		}
 		
 		return d;
@@ -86,6 +86,13 @@ public class Habitacion {
 	 */
 	public void agregarReserva(Reserva reserva) {
 		reservas.add(reserva);
+	}
+
+	/*
+	 * quita una reserva de la habitacion
+	 */
+	public void quitarReserva(Reserva reserva) {
+		reservas.remove(reserva);
 	}
 
 }

@@ -28,4 +28,11 @@ public class Reserva {
 		return habitacion;
 	}
 
+	/*
+	 * quita una reserva (this) en la habitacion a donde pertenece
+	 */
+	public void quitarReserva() {
+		this.getHabitacion().quitarReserva(this);
+	}
+
 }

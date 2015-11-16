@@ -9,7 +9,7 @@ import modelo.Hotel;
 
 public class ArmadorDeResultadoTest extends TestCase{
 	
-	public void testCuandoLeDicenBuscarAlternativasConUnaListaDeHotelesSiUnoSatisfaceUnaCondicionSutamañoEsMayorA0(){
+	public void testCuandoLeDicenBuscarAlternativasConUnaListaDeHotelesSiUnoSatisfaceUnaCondicionSutamanhoEsMayorA0(){
 		ArmadorDeResultado armadorDeResultado = new ArmadorDeResultado();
 		ArrayList<Hotel> lista = new ArrayList<Hotel>();
 		CondicionDeDestino condicion = new CondicionDeDestino("Argentina");
