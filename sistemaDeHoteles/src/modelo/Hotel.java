@@ -9,14 +9,21 @@ public class Hotel {
 	public String ciudad;
 	public Collection<Habitacion> habitaciones;
 	public String name;
-	public Integer cantidadDeHuespedes;
 	
-	public Hotel(String name, String ciudad, List<Habitacion> list){
+	public Hotel(String name, String ciudad, List<Habitacion> habitaciones){
 		this.ciudad = ciudad;
-		this.habitaciones = list;
+		this.setHabitaciones(habitaciones);
 		this.name = name;
 	}
 	
+	private void setHabitaciones(List<Habitacion> habitaciones) {
+		// TODO Auto-generated method stub
+		for(Habitacion h : habitaciones){
+			h.setHotel(this);
+		}
+		this.habitaciones = habitaciones;
+	}
+
 	public String getNombreDeCiudad(){
 		return this.ciudad;
 	}
@@ -26,11 +33,6 @@ public class Hotel {
 	}
 	public Collection<Habitacion> getHabitaciones(){
 		return this.habitaciones;
-	}
-
-	public void agregarHabitacion(Habitacion hab) {
-		// TODO Auto-generated method stub
-		this.getHabitaciones().add(hab);
 	}
 
 	public List<Habitacion> filterHabitaciones(ICondicionable ic) {

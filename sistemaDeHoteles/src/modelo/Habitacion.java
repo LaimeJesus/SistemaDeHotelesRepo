@@ -1,27 +1,29 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
 public class Habitacion {
 	
 	private Hotel hotel;
-	private Integer limiteHuespedes;
 	private Integer precioBase;
 	private ArrayList<IModificadorDePrecio> modificadores = new ArrayList<IModificadorDePrecio>();
 	private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+	private List<Cama> camas;
 	
-	public Habitacion(Hotel h, Integer limiteHuespedes){
-		this.setHotel(h);
-		this.setLimiteHuespedes(limiteHuespedes);
+	public Habitacion(List<Cama> camas) {
+		// TODO Auto-generated constructor stub
+		this.setCamas(camas);
 	}
 
-	private void setLimiteHuespedes(Integer limiteHuespedes) {
-		this.limiteHuespedes = limiteHuespedes;
+	private void setCamas(List<Cama> camas) {
+		// TODO Auto-generated method stub
+		this.camas = camas;
 	}
 
-	private void setHotel(Hotel h) {
+	public void setHotel(Hotel h) {
 		this.hotel = h;
 	}
 
@@ -51,7 +53,16 @@ public class Habitacion {
 	}
 	
 	public Integer getLimiteDeHuespedes() {
-		return this.limiteHuespedes;
+		int res = 0;
+		for(Cama c : this.getCamas()){
+			res += c.cantidadOcupantes();
+		}
+		return res;
+	}
+
+	private List<Cama> getCamas() {
+		// TODO Auto-generated method stub
+		return this.camas;
 	}
 
 	/*

@@ -11,7 +11,7 @@ import modelo.Reserva;
 
 public class HabitacionTest {
 
-	private Habitacion habitacion = new Habitacion(null,1);
+	private Habitacion habitacion = new Habitacion(null);
 	private Periodo periodoReserva = new Periodo(new DateTime(1999,1,1,1,1),new DateTime(2555,1,1,1,1));
 	private Reserva reserva = new Reserva(habitacion, periodoReserva, "pepe");
 

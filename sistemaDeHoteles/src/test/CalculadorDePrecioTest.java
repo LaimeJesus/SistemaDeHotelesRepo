@@ -19,7 +19,7 @@ public class CalculadorDePrecioTest {
 	private ReadableInstant f1 = new DateTime(2000,1,1,1,1);
 	private ReadableInstant f2 = new DateTime(2000,1,4,1,1);
 	private Periodo periodo = new Periodo(f1,f2);
-	private Habitacion habitacion = new Habitacion(null,0);
+	private Habitacion habitacion = new Habitacion(null);
 	private Integer precioBase = 10;
 	private Integer precioModificacion = 20;
 	private IModificadorDePrecio modificacion = new ModificadorDeprecioEnUnaFechaEspecifica(new DateTime(2000,1,3,1,1),precioModificacion);

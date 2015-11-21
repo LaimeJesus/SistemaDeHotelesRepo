@@ -11,7 +11,7 @@ public class CondicionDeHuespedes extends Condicion{
 	}
 	@Override
 	public boolean satisface(Habitacion h) {
-		return h.getLimiteDeHuespedes() == this.getCondicion();
+		return h.getLimiteDeHuespedes().equals(this.getCondicion());
 	}
 	public Integer getCondicion(){
 		return this.condicion;

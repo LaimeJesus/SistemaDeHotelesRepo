@@ -15,7 +15,7 @@ public class CondicionDeNombre extends Condicion{
 
 	@Override
 	public boolean satisface(Habitacion h) {
-		return h.getHotelName().equals((this.getCondicion()));
+		return h.getHotelName().equals(this.getCondicion());
 	}
 
 	private String getCondicion() {

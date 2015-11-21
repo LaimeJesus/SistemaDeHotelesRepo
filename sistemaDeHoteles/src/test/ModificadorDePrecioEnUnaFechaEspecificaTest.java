@@ -3,7 +3,6 @@ package test;
 import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.joda.time.ReadableInstant;
 import org.junit.Test;
 

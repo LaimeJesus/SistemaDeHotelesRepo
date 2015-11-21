@@ -15,7 +15,7 @@ public class ReservaTest {
 	private Periodo periodo = new Periodo(new DateTime(2000,1,1,1,1),new DateTime(2000,1,2,1,1));
 	private Reserva reserva;
 	private String usuario = "pepe";
-	private Habitacion habitacion = new Habitacion(null,1);
+	private Habitacion habitacion = new Habitacion(null);
 	
 	@Before
 	public void setup() {
