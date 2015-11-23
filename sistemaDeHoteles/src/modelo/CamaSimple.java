@@ -2,7 +2,7 @@ package modelo;
 
 public class CamaSimple implements Cama {
 
-	public int cantidadOcupantes(){
+	public Integer cantidadOcupantes(){
 		return 1;
 	}
 }
