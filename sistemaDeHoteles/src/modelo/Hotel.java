@@ -17,7 +17,6 @@ public class Hotel {
 	}
 	
 	private void setHabitaciones(List<Habitacion> habitaciones) {
-		// TODO Auto-generated method stub
 		for(Habitacion h : habitaciones){
 			h.setHotel(this);
 		}
@@ -31,6 +30,7 @@ public class Hotel {
 	public String getName(){
 		return this.name;
 	}
+	
 	public Collection<Habitacion> getHabitaciones(){
 		return this.habitaciones;
 	}
