@@ -1,6 +1,5 @@
 package modelo;
 
-import org.joda.time.LocalDate;
 import org.joda.time.ReadableInstant;
 
 public interface IModificadorDePrecio {
