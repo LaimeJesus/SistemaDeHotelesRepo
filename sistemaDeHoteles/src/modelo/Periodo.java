@@ -64,8 +64,6 @@ public class Periodo {
 		return fechaFin;
 	}
 
-	public ReadableInstant getFechaInicio() {
-		return fechaInicio;
-	}
+
 
 }

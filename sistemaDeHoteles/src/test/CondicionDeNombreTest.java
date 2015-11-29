@@ -1,8 +1,15 @@
 package test;
-import modelo.*;
 import java.util.ArrayList;
 
+import static org.mockito.Mockito.*;
+
 import junit.framework.TestCase;
+import modelo.Cama;
+import modelo.CamaDoble;
+import modelo.CamaSimple;
+import modelo.CondicionDeNombre;
+import modelo.Habitacion;
+import modelo.Hotel;
 
 public class CondicionDeNombreTest extends TestCase {
 
@@ -20,8 +27,15 @@ public class CondicionDeNombreTest extends TestCase {
 		habitaciones.add(habitacion);
 		Hotel hotel = new Hotel("Pepe", "Berazategui", habitaciones);
 		CondicionDeNombre condicionDeNombre = new CondicionDeNombre("Pepe");
+		
+		Habitacion mockHab = mock(Habitacion.class);
+		
+		//verify(mockHab).getHotelName();
+		String hotel_name = "Pepe";
+		when(mockHab.getHotelName()).thenReturn(hotel_name);
+		
 
 		//verify
-		assertTrue(condicionDeNombre.satisface(habitacion));
+		assertTrue(condicionDeNombre.satisface(mockHab));
 	}
 }
