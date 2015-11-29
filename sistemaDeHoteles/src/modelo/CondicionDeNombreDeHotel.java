@@ -1,11 +1,11 @@
 package modelo;
 
-public class CondicionDeNombre extends Condicion{
+public class CondicionDeNombreDeHotel extends Condicion{
 
 	private String condicionNombre;
 
 	
-	public CondicionDeNombre(String nombre) {
+	public CondicionDeNombreDeHotel(String nombre) {
 		this.setCondicion(nombre);
 	}
 

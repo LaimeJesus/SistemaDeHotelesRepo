@@ -22,7 +22,7 @@ public class CondicionCompuestaTest extends TestCase{
 	CondicionDeDestino destinoCordoba;
 	OperadorAnd myand;
 	OperadorOr myor;
-	CondicionDeNombre condicionDeNombre;
+	CondicionDeNombreDeHotel condicionDeNombre;
 
 	@Before
 	public void setUp(){
@@ -43,7 +43,7 @@ public class CondicionCompuestaTest extends TestCase{
 
 		destinoBuenosAires = new CondicionDeDestino("Buenos Aires");
 		destinoCordoba = new CondicionDeDestino("Cordoba");
-		condicionDeNombre = new CondicionDeNombre("pepe");
+		condicionDeNombre = new CondicionDeNombreDeHotel("pepe");
 		condicionCompuestaHuespedesYNombre = condicionDeHuespedes.compose(condicionDeNombre, myand);
 		condicionCompuestaDestinosCordobaYBsAs = destinoCordoba.compose(destinoBuenosAires, myor);
 	}

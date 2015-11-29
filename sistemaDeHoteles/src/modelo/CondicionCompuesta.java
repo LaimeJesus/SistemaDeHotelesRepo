@@ -5,6 +5,7 @@ import java.util.List;
 public class CondicionCompuesta extends Condicion {
 	
 	private List<ICondicionable> condiciones;
+	private Operador operador;
 	
 	public CondicionCompuesta(List<ICondicionable> cs, Operador op) {
 		this.setCondiciones(cs);
@@ -24,8 +25,16 @@ public class CondicionCompuesta extends Condicion {
 		return this.condiciones;
 	}
 
-	public void setCondiciones(List<ICondicionable> cs){
+	private void setCondiciones(List<ICondicionable> cs){
 		this.condiciones = cs;
 	}
+	private void setOperador(Operador op) {
+		this.operador = op;
+	}
+	
+	private Operador getOperador(){
+		return this.operador;
+	}
+
 
 }

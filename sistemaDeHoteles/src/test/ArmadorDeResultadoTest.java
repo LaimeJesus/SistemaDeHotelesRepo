@@ -22,7 +22,7 @@ public class ArmadorDeResultadoTest extends TestCase{
 	CamaSimple camaSimple;
 	CamaDoble camaDoble;
 	ArrayList<Cama> camas;
-	CondicionDeNombre condicionDeNombre;
+	CondicionDeNombreDeHotel condicionDeNombre;
 	ICondicionable condicionCompuestaAndDestinoYNombre;
 	
 	
@@ -34,7 +34,7 @@ public class ArmadorDeResultadoTest extends TestCase{
 		condicionDestinoUruguay = new CondicionDeDestino("Uruguay");
 		myOr = new OperadorOr();
 		myAnd = new OperadorAnd();
-		condicionDeNombre = new CondicionDeNombre("Pepe");
+		condicionDeNombre = new CondicionDeNombreDeHotel("Pepe");
 		condicionCompuestaOrDestino = condicionDestinoArgentina.compose(condicionDestinoUruguay, myOr);
 		condicionCompuestaAndDestinoYNombre = condicionDestinoUruguay.compose(condicionDeNombre, myAnd);
 		habitacion1 = new Habitacion(null);
