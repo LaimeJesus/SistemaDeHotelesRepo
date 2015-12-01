@@ -60,8 +60,12 @@ public class Periodo {
 		return !(periodo.getFechaFin().isAfter(fechaFin) || fechaInicio.isAfter(periodo.getFechaFin()));
 	}
 
-	private ReadableInstant getFechaFin() {
+	public ReadableInstant getFechaFin() {
 		return fechaFin;
+	}
+	
+	public ReadableInstant getFechaInicio() {
+		return fechaInicio;
 	}
 
 
