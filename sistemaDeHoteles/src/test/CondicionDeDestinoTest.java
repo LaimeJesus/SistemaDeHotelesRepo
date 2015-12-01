@@ -2,28 +2,65 @@ package test;
 
 import modelo.*;
 
-import java.util.ArrayList;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 import junit.framework.TestCase;
 
 public class CondicionDeDestinoTest extends TestCase {
 
+	//esta condicion tiene como objetivo ver si una habitacion pertenece a la ciudad indicada en la condicion	
+	
+	private Habitacion mock_habitacion;
+	private CondicionDeDestino condicionDeDestino;
 
-	//esta condicion tiene como objetivo ver si una habitacion pertenece a la ciudad indicada en la condicion
-	public void testVeoSiUnaHabitacionSatisfaceUnaCondicionDeDestino(){
+	public void setUp(){
+		//
+		mock_habitacion = Mockito.mock(Habitacion.class);
+		//sut
+		condicionDeDestino = new CondicionDeDestino("Berazategui");
+	}
+
+
+	public void testVeoQueUnaHabitacionSatisfaceUnaCondicionDeDestino(){
 		//arrange
-		CamaSimple camaSimple = new CamaSimple();
-		CamaDoble camaCompleja = new CamaDoble();
-		ArrayList<Cama> camas = new ArrayList<Cama>();
-		camas.add(camaSimple);
-		camas.add(camaCompleja);
-		Habitacion habitacion = new Habitacion(camas);
-		ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
-		habitaciones.add(habitacion);
-		Hotel hotel = new Hotel("Pepe", "Berazategui", habitaciones);
-		CondicionDeDestino condicionDeDestino = new CondicionDeDestino("Berazategui");
-
+		String destino_expected = "Berazategui";
+		
 		//verify
-		assertTrue(condicionDeDestino.satisface(habitacion));
+		Mockito.when(mock_habitacion.getHotelNombreDeCiudad()).thenReturn(destino_expected);
+		
+		assertEquals(destino_expected, condicionDeDestino.getCondicion());
+		assertTrue(condicionDeDestino.satisface(mock_habitacion));
+	}
+	
+	public void testVeoQueUnaHabitacionNoSatisfaceUnaCondicionDeDestino(){
+		//arrange
+		String destino_not_expected = "not expected";
+		Mockito.when(mock_habitacion.getHotelNombreDeCiudad()).thenReturn(destino_not_expected);
+		//verify
+		assertNotSame(destino_not_expected, condicionDeDestino.getCondicion());
+		assertFalse(condicionDeDestino.satisface(mock_habitacion));
+	}
+
+	public void testCasoBordeNombreDeCiudadNull(){
+		//arrange
+		Mockito.when(mock_habitacion.getHotelNombreDeCiudad()).thenThrow(new NullPointerException());
+		//verify
+		try {
+			condicionDeDestino.satisface(mock_habitacion);
+		}catch(Throwable expected){
+	        assertEquals(NullPointerException.class, expected.getClass());
+			}
+		}
+	public void testCasoBordeCondicionNull(){
+		//arrange
+		condicionDeDestino = new CondicionDeDestino(null);
+		//Mockito.when(mock_habitacion.getHotelNombreDeCiudad()).thenReturn("a name");
+		try {
+			condicionDeDestino.satisface(mock_habitacion);
+		}catch(Throwable expected){
+	        assertEquals(NullPointerException.class, expected.getClass());
+			}
+		Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
 	}
 }
