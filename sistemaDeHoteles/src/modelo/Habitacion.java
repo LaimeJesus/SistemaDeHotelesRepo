@@ -106,4 +106,9 @@ public class Habitacion {
 		reservas.remove(reserva);
 	}
 
+	public List<Reserva> getReservas() {
+		// TODO Auto-generated method stub
+		return reservas;
+	}
+
 }

@@ -10,6 +10,7 @@ import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.Periodo;
 import modelo.Reserva;
+import modelo.Usuario;
 
 public class UsuarioTest {
 
