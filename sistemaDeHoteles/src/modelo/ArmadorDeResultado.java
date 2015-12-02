@@ -7,16 +7,22 @@ public class ArmadorDeResultado {
 
 	//esto se recontra podria mejorar para que no quede tan feamente implementado
 	public List<Resultado> buscarAlternativas(List<Hotel> hotels, ICondicionable ic){
+
+		List<Habitacion> habitaciones;
 		ArrayList<Resultado> resultados = new ArrayList<Resultado>();
-		for(Hotel h : hotels){
-			List<Habitacion> habitaciones = new ArrayList<Habitacion>();
-			habitaciones = h.filterHabitaciones(ic);
-			//se podria separar
+
+		for(Hotel hotel : hotels){
+			habitaciones = new ArrayList<Habitacion>();
+			habitaciones = hotel.filterHabitaciones(ic);
 			if(!habitaciones.isEmpty()){
-				Resultado r = new Resultado(habitaciones, habitaciones.get(0).getHotel());
-				resultados.add(r);
+				resultados.add(this.armarResultado(habitaciones));
 			}
 		}
 	return resultados;
+	}
+
+	private Resultado armarResultado(List<Habitacion> habitaciones) {
+		// TODO Auto-generated method stub
+		return new Resultado(habitaciones, habitaciones.get(0).getHotel());
 	}
 }

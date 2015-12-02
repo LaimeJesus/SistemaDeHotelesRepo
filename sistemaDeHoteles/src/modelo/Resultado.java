@@ -21,4 +21,10 @@ public class Resultado {
 	public void setHotel(Hotel h){
 		this.hotel = h;
 	}
+	public List<Habitacion> getHabitaciones(){
+		return this.habitaciones;
+	}
+	public Hotel getHotel(){
+		return this.hotel;
+	}
 }

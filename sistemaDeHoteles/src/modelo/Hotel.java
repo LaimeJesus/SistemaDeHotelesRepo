@@ -16,6 +16,7 @@ public class Hotel {
 		this.name = name;
 	}
 	
+	//este metodo es para evitar el problema del conocimiento mutuo entre un hotel y sus habitaciones
 	private void setHabitaciones(List<Habitacion> habitaciones) {
 		for(Habitacion h : habitaciones){
 			h.setHotel(this);
@@ -35,14 +36,15 @@ public class Hotel {
 		return this.habitaciones;
 	}
 
-	public List<Habitacion> filterHabitaciones(ICondicionable ic) {
-		ArrayList<Habitacion> habs = new ArrayList<Habitacion>();
-		for(Habitacion h : this.getHabitaciones()){
-			if(ic.satisface(h)){
-				habs.add(h);
+	//dada una condicion ic devuelve una lista de habitaciones que cumplan con esa condicion
+	public List<Habitacion> filterHabitaciones(ICondicionable condicion) {
+		ArrayList<Habitacion> habitacionesFiltradas = new ArrayList<Habitacion>();
+		for(Habitacion habitacion : this.getHabitaciones()){
+			if(condicion.satisface(habitacion)){
+				habitacionesFiltradas.add(habitacion);
 			}
 		}
-		return habs;
+		return habitacionesFiltradas;
 	}
 
 }

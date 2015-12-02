@@ -1,6 +1,10 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.mockito.Mockito;
+
 import junit.framework.TestCase;
 import modelo.*;
 public class ArmadorDeResultadoTest extends TestCase{
@@ -24,48 +28,66 @@ public class ArmadorDeResultadoTest extends TestCase{
 	ArrayList<Cama> camas;
 	CondicionDeNombreDeHotel condicionDeNombre;
 	ICondicionable condicionCompuestaAndDestinoYNombre;
+	private ArrayList<Hotel> mockList;
+	private Hotel mockHotel;
+	private Condicion mockCondicion;
+	private ArrayList<Hotel> mockHotelList;
+	private ArrayList<Habitacion> mockHabitacionList;
+	private Habitacion mockHabitacion;
+	private ArmadorDeResultado sut;
+	private int alternativas;
+	private List<Resultado> resultados;
 	
 	
 	public void setUp(){
-		armadorDeResultado = new ArmadorDeResultado();
-		hoteles = new ArrayList<Hotel>();
-
-		condicionDestinoArgentina = new CondicionDeDestino("Argentina");
-		condicionDestinoUruguay = new CondicionDeDestino("Uruguay");
-		myOr = new OperadorOr();
-		myAnd = new OperadorAnd();
-		condicionDeNombre = new CondicionDeNombreDeHotel("Pepe");
-		condicionCompuestaOrDestino = condicionDestinoArgentina.compose(condicionDestinoUruguay, myOr);
-		condicionCompuestaAndDestinoYNombre = condicionDestinoUruguay.compose(condicionDeNombre, myAnd);
-		habitacion1 = new Habitacion(null);
-		habitacion2 = new Habitacion(null);
-
-
-		habitacionesHotel1 = new ArrayList<Habitacion>();
-		habitacionesHotel2 = new ArrayList<Habitacion>();
-		habitacionesHotel1.add(habitacion1);
-		habitacionesHotel2.add(habitacion2);
-
-
-		hotel1 = new Hotel("Pepe", "Argentina", habitacionesHotel1);
-		hotel2 = new Hotel("Pipi", "Uruguay", habitacionesHotel2);
 		
-		hoteles.add(hotel1);
-		hoteles.add(hotel2);
+		sut = new ArmadorDeResultado();
+		
+		mockHotelList = new ArrayList<Hotel>();
+		mockHotel = Mockito.mock(Hotel.class);
+
+		mockHabitacion = Mockito.mock(Habitacion.class);
+		mockHabitacionList = new ArrayList<Habitacion>();
+		
+		mockCondicion = Mockito.mock(Condicion.class);
+		
+	
 	}
 	
 	public void testVerSiBuscarAlternativasEncuentraUnaHabitacionQueCumplaUnaCondicion(){
-				
-		assertEquals(1,armadorDeResultado.buscarAlternativas(hoteles,condicionDeNombre).size());
+		//lista de hoteles con un hotel
+		//lista de habitacioens de ese hotel con una habitacion
+		mockHotelList.add(mockHotel);
+		mockHabitacionList.add(mockHabitacion);
+
+		Mockito.when(mockHotel.filterHabitaciones(mockCondicion)).thenReturn(mockHabitacionList);
+		
+		resultados = sut.buscarAlternativas(mockHotelList, mockCondicion);
+		alternativas = resultados.size();
+		assertEquals(1, alternativas);
+		
 	}
 	
-	public void testVerSiBuscarAlternativasEncuentraUnaHabitacionQueCumplaAlMenosUnaCondicion(){
+	public void testVerSiBuscarAlternativasNoEncuentraUnaHabitacionQueCumplaUnaCondicion(){
+		//lista de hoteles con un hotel
+		//lista de habitacioens de ese hotel con una habitacion
 		
-		assertEquals(2,armadorDeResultado.buscarAlternativas(hoteles,condicionCompuestaOrDestino).size());
+		mockHotelList.add(mockHotel);
+		Mockito.when(mockHotel.filterHabitaciones(mockCondicion)).thenReturn(mockHabitacionList);
+		
+		resultados = sut.buscarAlternativas(mockHotelList, mockCondicion);
+		alternativas = resultados.size();
+		assertEquals(0, alternativas);
 	}
 
-	public void testVerSiBuscarAlternativasNoEncuentraUnaNingunaHabitacionQueCumplaDosCondiciones(){
-		assertEquals(0,armadorDeResultado.buscarAlternativas(hoteles, condicionCompuestaAndDestinoYNombre).size());
+	public void testCasoBordeListDeHotelVacia(){
+		//lista de hoteles vacia
+		//lista de habitaciones no importa
+		
+		Mockito.when(mockHotel.filterHabitaciones(mockCondicion)).thenReturn(mockHabitacionList);
+		alternativas = sut.buscarAlternativas(mockHotelList, mockCondicion).size();
+		
+		assertEquals(0,alternativas);
 	}
 
 }
