@@ -8,27 +8,7 @@ import org.mockito.Mockito;
 import junit.framework.TestCase;
 import modelo.*;
 public class ArmadorDeResultadoTest extends TestCase{
-	
-	ArmadorDeResultado armadorDeResultado;
-	ArrayList<Hotel> hoteles;
-	CondicionDeDestino condicionDestinoArgentina;
-	CondicionDeDestino condicionDestinoUruguay;
-	ArrayList<Habitacion> habitacionesHotel1;
-	ArrayList<Habitacion> habitacionesHotel2;
-	Hotel hotel1;
-	Hotel hotel2;
-	Habitacion habitacion1;
-	Habitacion habitacion2;
-	ICondicionable condicionCompuestaOrDestino;
-	ICondicionable condicionCompuestaAndDestino;
-	OperadorAnd myAnd;
-	OperadorOr myOr;
-	CamaSimple camaSimple;
-	CamaDoble camaDoble;
-	ArrayList<Cama> camas;
-	CondicionDeNombreDeHotel condicionDeNombre;
-	ICondicionable condicionCompuestaAndDestinoYNombre;
-	private ArrayList<Hotel> mockList;
+
 	private Hotel mockHotel;
 	private Condicion mockCondicion;
 	private ArrayList<Hotel> mockHotelList;

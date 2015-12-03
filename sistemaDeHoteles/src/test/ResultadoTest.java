@@ -22,14 +22,15 @@ public class ResultadoTest extends TestCase{
 		//arrange
 		habitaciones = new ArrayList<Habitacion>();
 		hotel = Mockito.mock(Hotel.class);
+		sut = new Resultado(habitaciones, hotel);
+		
 		//working
 		expected = "pepe";
 		Mockito.when(hotel.getName()).thenReturn(expected);
-		sut = new Resultado(habitaciones, hotel);
 		current = sut.getHotel().getName();
-
+		
 		//assertion
-		assertEquals(0, habitaciones.size());
+		assertEquals(0, sut.getHabitaciones().size());
 		assertEquals(expected, current);
 	}
 

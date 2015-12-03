@@ -14,58 +14,81 @@ public class CondicionCompuestaTest extends TestCase{
 	//necesito cambiar los test pero no llego a ver como asi que dsp lo veo
 	Habitacion mock_habitacion;
 	CondicionDeHuespedes mockCondicionDeHuespedes;
-	CondicionDeDestino mockDestinoBuenosAires;
-	CondicionDeDestino mockDestinoCordoba;
 	CondicionDeNombreDeHotel mockCondicionDeNombre;
-	ICondicionable condicionCompuestaHuespedesYNombre;
-	ICondicionable condicionCompuestaDestinosCordobaYBsAs;
+	
+	ICondicionable sutHuespedesNombreAND;
+	ICondicionable sutHuespedesNombreOR;
 	OperadorAnd myMockAnd;
 	OperadorOr myMockOr;
+	List<ICondicionable> mockList;
 
 
 	@Before
 	public void setUp(){
+		//las condiciones
 		mockCondicionDeHuespedes = Mockito.mock(CondicionDeHuespedes.class);
-		mockDestinoBuenosAires = Mockito.mock(CondicionDeDestino.class);
-		mockDestinoCordoba = Mockito.mock(CondicionDeDestino.class);
 		mockCondicionDeNombre = Mockito.mock(CondicionDeNombreDeHotel.class);
+		
+		//la habitacion
 		mock_habitacion = Mockito.mock(Habitacion.class);
+	
+		//los operadores
 		myMockAnd = Mockito.mock(OperadorAnd.class);
 		myMockOr = Mockito.mock(OperadorOr.class);
+		
+		//la lista de condiciones
+		mockList = new ArrayList<ICondicionable>();
+		mockList.add(mockCondicionDeHuespedes);
+		mockList.add(mockCondicionDeNombre);
+		
+		//los sistemas a testear
+		sutHuespedesNombreAND = new CondicionCompuesta(mockList, myMockAnd);
+		sutHuespedesNombreOR = new CondicionCompuesta(mockList, myMockOr);
 	}
-	//este metodo esta implementado en la condicion
-	//Este es un template method ya que tanto una hoja como una condicion compuesta pueden componerse de la misma manera
-	//ademas devuelve una condicion compuesta por eso creo que es mjor testearlo aca
-	public void testVerQueSeInicializaBienUnaCondicionCompuestaPorUnAndyPorUnOr(){
+	public void testVeoQueCadaCondicionEnvioElMensajeSatisface(){
 
-		Mockito.when(mockCondicionDeHuespedes.compose(mockCondicionDeNombre, myMockAnd)).thenReturn(condicionCompuestaHuespedesYNombre);
-		Mockito.when(mockDestinoCordoba.compose(mockDestinoBuenosAires, myMockOr)).thenReturn(condicionCompuestaDestinosCordobaYBsAs);
+		sutHuespedesNombreOR.satisface(mock_habitacion);
+		sutHuespedesNombreAND.satisface(mock_habitacion);
+		Mockito.verify(mockCondicionDeHuespedes, Mockito.atLeastOnce()).satisface(mock_habitacion);
+		Mockito.verify(mockCondicionDeNombre, Mockito.atLeastOnce()).satisface(mock_habitacion);
 
-		condicionCompuestaHuespedesYNombre = mockCondicionDeHuespedes.compose(mockCondicionDeNombre, myMockAnd);
-		condicionCompuestaDestinosCordobaYBsAs = mockDestinoCordoba.compose(mockDestinoBuenosAires, myMockOr);
-		
-	
-	}
-		
-	public void testVeoQueUnaHabitacionSatisfaceUnaCondicionCompuestaPorUnAnd(){
-		boolean tautology = true;
-		Mockito.when(mock_habitacion.getLimiteDeHuespedes()).thenReturn(3);
-		Mockito.when(mock_habitacion.getHotelName()).thenReturn("pepe");
-		Mockito.when(myMockAnd.neutro()).thenReturn(tautology);
-		Mockito.when(myMockAnd.operar(tautology, tautology)).thenReturn(true);
-		
-		//assertTrue(condicionCompuestaHuespedesYNombre.satisface(mock_habitacion));
-		assertTrue(true);
-	}
-	public void testVeoQueUnaHabitacionNoSatisfaceUnaCondicionCompuestaPorUnAnd(){
-		assertTrue(true);
 	}
 	
-	public void testVerSiUnaHabitacionSatisfaceUnaCondicionCompuestaPorUnOr(){
-		//assertTrue(condicionCompuestaDestinosCordobaYBsAs.satisface(habitacion));
-		assertTrue(true);
+	public void testVeoQueSeCargoElNeutroDeLaOperacion(){
+		sutHuespedesNombreOR.satisface(mock_habitacion);
+		sutHuespedesNombreAND.satisface(mock_habitacion);
+		
+		Mockito.verify(myMockAnd).neutro();
+		Mockito.verify(myMockOr).neutro();
 	}
-	public void testVerSiUnaHabitacionNoSatisfaceUnaCondicionCompuestaPorUnOr(){
-		assertTrue(true);
+	
+	public void testVeoQueLosOperadoresOperaronAlMenosUnaVez(){
+		
+		Mockito.when(myMockAnd.neutro()).thenReturn(true);
+		Mockito.when(myMockOr.neutro()).thenReturn(false);
+		
+		sutHuespedesNombreOR.satisface(mock_habitacion);
+		sutHuespedesNombreAND.satisface(mock_habitacion);
+		
+		Mockito.verify(myMockAnd, Mockito.atLeastOnce()).operar(true, mockCondicionDeHuespedes.satisface(mock_habitacion));
+		Mockito.verify(myMockAnd, Mockito.atLeastOnce()).operar(true, mockCondicionDeNombre.satisface(mock_habitacion));
+		
+		Mockito.verify(myMockOr, Mockito.atLeastOnce()).operar(false, mockCondicionDeHuespedes.satisface(mock_habitacion));
+		Mockito.verify(myMockOr, Mockito.atLeastOnce()).operar(false, mockCondicionDeNombre.satisface(mock_habitacion));
+	}
+	
+	public void testCasoBordeListaDeCondicionesVacia(){
+		mockList= new ArrayList<ICondicionable>();
+		sutHuespedesNombreAND = new CondicionCompuesta(mockList, myMockAnd);
+		sutHuespedesNombreOR = new CondicionCompuesta(mockList, myMockOr);
+	
+		sutHuespedesNombreOR.satisface(mock_habitacion);
+		sutHuespedesNombreAND.satisface(mock_habitacion);
+		
+		Mockito.verify(myMockAnd, Mockito.never()).operar(true, mockCondicionDeHuespedes.satisface(mock_habitacion));
+		Mockito.verify(myMockAnd, Mockito.never()).operar(true, mockCondicionDeNombre.satisface(mock_habitacion));
+		
+		Mockito.verify(myMockOr, Mockito.never()).operar(false, mockCondicionDeHuespedes.satisface(mock_habitacion));
+		Mockito.verify(myMockOr, Mockito.never()).operar(false, mockCondicionDeNombre.satisface(mock_habitacion));
 	}
 }

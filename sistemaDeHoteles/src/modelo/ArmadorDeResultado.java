@@ -12,8 +12,9 @@ public class ArmadorDeResultado {
 		ArrayList<Resultado> resultados = new ArrayList<Resultado>();
 
 		for(Hotel hotel : hotels){
-			habitaciones = new ArrayList<Habitacion>();
+
 			habitaciones = hotel.filterHabitaciones(ic);
+			
 			if(!habitaciones.isEmpty()){
 				resultados.add(this.armarResultado(habitaciones));
 			}
