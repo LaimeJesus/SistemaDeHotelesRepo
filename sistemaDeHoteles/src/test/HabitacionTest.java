@@ -1,16 +1,68 @@
 package test;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+
+import junit.framework.TestCase;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import modelo.Cama;
 import modelo.Habitacion;
+import modelo.Hotel;
 import modelo.Periodo;
 import modelo.Reserva;
 
-public class HabitacionTest {
+public class HabitacionTest extends TestCase{
+	
+	private Hotel mockHotel;
+	private ArrayList<Cama> dummyCamas;
+	private Habitacion sut;
+	private ArrayList<Reserva> mockList;
+	private Reserva mockReserva;
+	
+	public void setUp(){
+		dummyCamas = new ArrayList<Cama>();
+		sut = new Habitacion(dummyCamas);
+		mockHotel = Mockito.mock(Hotel.class);
+		
+		sut.setHotel(mockHotel);
+	}
+	
+	public void testVeoQueDevuelveElNombreDelHotelAlQuePertence(){
+
+		sut.getHotelName();
+		
+		Mockito.verify(mockHotel).getName();
+	}
+	
+	public void testVeoQueDevuelveElNombreDeLaCiudadDelHotelAlQuePertence(){
+		
+		sut.getHotelNombreDeCiudad();
+		
+		Mockito.verify(mockHotel).getNombreDeCiudad();
+	}
+	
+	//este no anda como esperaba per igual funciona estoy medio dormido dsp sigo
+	public void testVeoSiUnaHabitacionEstaDisponible(){
+		
+		mockList = new ArrayList<Reserva>();
+		mockReserva = Mockito.mock(Reserva.class);
+		mockList.add(mockReserva);
+		
+		Periodo expected = Mockito.mock(Periodo.class);
+		Periodo toCompare = Mockito.mock(Periodo.class);
+		
+		Mockito.when(mockReserva.getPeriodo()).thenReturn(expected);
+		Mockito.when(expected.coincideCon(toCompare)).thenReturn(true);
+		
+		assertTrue(sut.estaDisponible(toCompare));
+	}
+	
+	
 	
 	@Test
 	public void test_verQuePuedoSetearReservas() {

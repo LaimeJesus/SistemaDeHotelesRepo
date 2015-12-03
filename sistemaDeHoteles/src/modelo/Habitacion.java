@@ -9,13 +9,15 @@ public class Habitacion {
 	
 	private Hotel hotel;
 	private Integer precioBase;
-	private ArrayList<IModificadorDePrecio> modificadores = new ArrayList<IModificadorDePrecio>();
-	private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+	private ArrayList<IModificadorDePrecio> modificadores;
+	private ArrayList<Reserva> reservas;
 	private List<Cama> camas;
 	
 	public Habitacion(List<Cama> camas) {
 		// TODO Auto-generated constructor stub
 		this.setCamas(camas);
+		this.modificadores = new ArrayList<IModificadorDePrecio>();
+		this.reservas = new ArrayList<Reserva>();
 	}
 
 	private void setCamas(List<Cama> camas) {
@@ -45,7 +47,7 @@ public class Habitacion {
 	public Boolean estaDisponible(Periodo periodo) {
 		Boolean d = true;
 		
-		for (Reserva r : reservas) {
+		for (Reserva r : this.reservas) {
 			d = d && !(r.getPeriodo().coincideCon(periodo));
 		}
 		

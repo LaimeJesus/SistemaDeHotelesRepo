@@ -15,7 +15,8 @@ public class CondicionTest extends TestCase{
 	private ArrayList mockList;
 	private Condicion condicionExample;
 	private OperadorAnd mockOperator;
-
+	
+	//no pude testearla tengo que entende r un poco mas mock
 	public void testVeoQueComposeSeEjecutaDeManeraCorrecta(){
 		sut = Mockito.mock(Condicion.class);
 		condicionExample = Mockito.mock(Condicion.class);

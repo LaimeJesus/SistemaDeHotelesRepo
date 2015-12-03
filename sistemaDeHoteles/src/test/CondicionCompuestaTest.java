@@ -44,6 +44,11 @@ public class CondicionCompuestaTest extends TestCase{
 		//los sistemas a testear
 		sutHuespedesNombreAND = new CondicionCompuesta(mockList, myMockAnd);
 		sutHuespedesNombreOR = new CondicionCompuesta(mockList, myMockOr);
+
+		//mock's behavior
+		Mockito.when(myMockAnd.neutro()).thenReturn(true);
+		Mockito.when(myMockOr.neutro()).thenReturn(false);
+	
 	}
 	public void testVeoQueCadaCondicionEnvioElMensajeSatisface(){
 
@@ -63,9 +68,6 @@ public class CondicionCompuestaTest extends TestCase{
 	}
 	
 	public void testVeoQueLosOperadoresOperaronAlMenosUnaVez(){
-		
-		Mockito.when(myMockAnd.neutro()).thenReturn(true);
-		Mockito.when(myMockOr.neutro()).thenReturn(false);
 		
 		sutHuespedesNombreOR.satisface(mock_habitacion);
 		sutHuespedesNombreAND.satisface(mock_habitacion);
