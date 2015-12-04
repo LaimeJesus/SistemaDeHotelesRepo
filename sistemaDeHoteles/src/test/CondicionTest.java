@@ -1,31 +1,35 @@
 package test;
 
-import java.util.ArrayList;
-
 import modelo.Condicion;
-import modelo.OperadorAnd;
-
 import org.mockito.Mockito;
-
 import junit.framework.TestCase;
 
 public class CondicionTest extends TestCase{
 		
 	
-	//a borrar si no puedo entender cmo hacer un buen mock para este mensaje
-	private Condicion sut;
-	private ArrayList mockList;
-	private Condicion condicionExample;
-	private OperadorAnd mockOperator;
+	//no estoy seguro si se puede testear una clase abstracta.
+	//tube un problema para testear el mensaje crearGrupoDeCondicion cuando se envia compose por eso no lo testee
+	//en cada uno de los compose
+	private Condicion sutAzar;
+	private Condicion sutRandom;
 	
-	//no pude testearla tengo que entende r un poco mas mock
-	public void testVeoQueComposeSeEjecutaDeManeraCorrecta(){
-		sut = Mockito.mock(Condicion.class);
-		condicionExample = Mockito.mock(Condicion.class);
-		mockOperator = Mockito.mock(OperadorAnd.class);
-		mockList = Mockito.mock(ArrayList.class);
-		sut.compose(condicionExample, mockOperator);
+
+	public void setUp(){
+		sutRandom = Mockito.mock(Condicion.class);
+		sutAzar = Mockito.mock(Condicion.class);	
+	}
+	public void testComposeDeConjuncion(){
+		sutRandom.composeToConjuncion(sutAzar);
+		Mockito.verify(sutRandom).composeToConjuncion(sutAzar);
 		
-		assertTrue(true);
+	}
+	public void testComposeDeDisjuncion(){
+		sutRandom.composeToDisjuncion(sutAzar);
+		Mockito.verify(sutRandom).composeToDisjuncion(sutAzar);
+	}
+	public void testQueCondicionArmaElGrupoDeCondicion(){
+		sutRandom.crearGrupoDeCondicion(sutRandom, sutAzar);
+		Mockito.verify(sutRandom).crearGrupoDeCondicion(sutRandom, sutAzar);
+
 	}
 }

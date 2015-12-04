@@ -36,7 +36,7 @@ public class Hotel {
 	}
 
 	//dada una condicion ic devuelve una lista de habitaciones que cumplan con esa condicion
-	public List<Habitacion> filterHabitaciones(ICondicionable condicion) {
+	public List<Habitacion> filterHabitaciones(Condicion condicion) {
 		ArrayList<Habitacion> habitacionesFiltradas = new ArrayList<Habitacion>();
 		
 		for(Habitacion habitacion : this.getHabitaciones()){

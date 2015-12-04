@@ -11,13 +11,13 @@ public class CondicionDeFechaTest extends TestCase {
 	public void testVeoSiUnaHabitacionSatisfaceUnaCondicionDeFecha(){
 		//arrange
 		Periodo periodo = null;
-		CondicionDeFecha condicionDeFecha = new CondicionDeFecha(periodo);
+		CondicionDeFecha sut = new CondicionDeFecha(periodo);
 
 		//este mock es para ver que una habitacion envie el mensaje estadisponible con periodo como argumento
 		Habitacion mockHabitacion = Mockito.mock(Habitacion.class);
 
 		//verify
-		condicionDeFecha.satisface(mockHabitacion);
+		sut.satisface(mockHabitacion);
 		Mockito.verify(mockHabitacion).estaDisponible(periodo);
 	}
 }
