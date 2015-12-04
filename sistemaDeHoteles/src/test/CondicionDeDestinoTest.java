@@ -2,7 +2,6 @@ package test;
 
 import modelo.*;
 
-import org.junit.Test;
 import org.mockito.Mockito;
 
 import junit.framework.TestCase;
@@ -50,6 +49,7 @@ public class CondicionDeDestinoTest extends TestCase {
 			condicionDeDestino.satisface(mock_habitacion);
 		}catch(Throwable expected){
 	        assertEquals(NullPointerException.class, expected.getClass());
+			Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
 			}
 		}
 	public void testCasoBordeCondicionNull(){
@@ -60,7 +60,7 @@ public class CondicionDeDestinoTest extends TestCase {
 			condicionDeDestino.satisface(mock_habitacion);
 		}catch(Throwable expected){
 	        assertEquals(NullPointerException.class, expected.getClass());
+			Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
 			}
-		Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
 	}
 }

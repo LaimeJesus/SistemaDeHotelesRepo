@@ -11,6 +11,8 @@ import junit.framework.TestCase;
 
 public class CondicionTest extends TestCase{
 		
+	
+	//a borrar si no puedo entender cmo hacer un buen mock para este mensaje
 	private Condicion sut;
 	private ArrayList mockList;
 	private Condicion condicionExample;

@@ -3,6 +3,7 @@ package test;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -11,6 +12,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import modelo.Cama;
+import modelo.CamaDoble;
+import modelo.CamaSimple;
 import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.Periodo;
@@ -19,16 +22,32 @@ import modelo.Reserva;
 public class HabitacionTest extends TestCase{
 	
 	private Hotel mockHotel;
-	private ArrayList<Cama> dummyCamas;
 	private Habitacion sut;
-	private ArrayList<Reserva> mockList;
 	private Reserva mockReserva;
+	private List<Cama> mockCamaList;
+	private CamaSimple mockCamaSimple;
+	private Cama mockCamaDoble;
+
+	
+	private Habitacion habitacion = new Habitacion(null);
+	private Periodo periodoReserva = new Periodo(new DateTime(1999,1,1,1,1),new DateTime(2555,1,1,1,1));
+	private Reserva reserva = new Reserva(habitacion, periodoReserva, "pepe");
 	
 	public void setUp(){
-		dummyCamas = new ArrayList<Cama>();
-		sut = new Habitacion(dummyCamas);
+		
+		mockCamaList = new ArrayList<Cama>();
+		mockCamaSimple = Mockito.mock(CamaSimple.class);
+		mockCamaSimple = Mockito.mock(CamaSimple.class);
+		mockCamaDoble = Mockito.mock(CamaDoble.class);
+		mockCamaList.add(mockCamaSimple);
+		mockCamaList.add(mockCamaDoble);
+
+		mockReserva = Mockito.mock(Reserva.class);
+		
+		sut = new Habitacion(mockCamaList);
 		mockHotel = Mockito.mock(Hotel.class);
 		
+		sut.agregarReserva(mockReserva);
 		sut.setHotel(mockHotel);
 	}
 	
@@ -45,38 +64,31 @@ public class HabitacionTest extends TestCase{
 		
 		Mockito.verify(mockHotel).getNombreDeCiudad();
 	}
-	
-	//este no anda como esperaba per igual funciona estoy medio dormido dsp sigo
+
 	public void testVeoSiUnaHabitacionEstaDisponible(){
 		
-		mockList = new ArrayList<Reserva>();
-		mockReserva = Mockito.mock(Reserva.class);
-		mockList.add(mockReserva);
+		Periodo periodoOcupadoPorLaReserva = Mockito.mock(Periodo.class);
+		Periodo periodoAComparar = Mockito.mock(Periodo.class);
 		
-		Periodo expected = Mockito.mock(Periodo.class);
-		Periodo toCompare = Mockito.mock(Periodo.class);
+		Mockito.when(mockReserva.getPeriodo()).thenReturn(periodoOcupadoPorLaReserva);
+		Mockito.when(periodoOcupadoPorLaReserva.coincideCon(periodoAComparar)).thenReturn(false);
 		
-		Mockito.when(mockReserva.getPeriodo()).thenReturn(expected);
-		Mockito.when(expected.coincideCon(toCompare)).thenReturn(true);
-		
-		assertTrue(sut.estaDisponible(toCompare));
+		assertTrue(sut.estaDisponible(periodoAComparar));
 	}
 	
+	public void testVeoQueConsigoLaCantidadDeHuespedesDisponiblesQueEspero(){
+		
+		sut.getLimiteDeHuespedes();
+		Mockito.verify(mockCamaSimple).cantidadOcupantes();
+		Mockito.verify(mockCamaDoble).cantidadOcupantes();
+	}
 	
 	
 	@Test
 	public void test_verQuePuedoSetearReservas() {
-		Habitacion h = new Habitacion(null);
-		Reserva r = mock(Reserva.class);
-		h.agregarReserva(r);
-		assertEquals(1,h.getReservas().size());
+		assertEquals(1,sut.getReservas().size());
 	}
 	
-	/* test viejos sin mock hechos antes que se de la clase de test doubles */
-
-	private Habitacion habitacion = new Habitacion(null);
-	private Periodo periodoReserva = new Periodo(new DateTime(1999,1,1,1,1),new DateTime(2555,1,1,1,1));
-	private Reserva reserva = new Reserva(habitacion, periodoReserva, "pepe");
 
 	/*
 	 * creo una habitacion y veo que este siempre disponible
