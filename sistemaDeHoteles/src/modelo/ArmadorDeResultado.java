@@ -19,7 +19,7 @@ public class ArmadorDeResultado {
 				resultados.add(this.armarResultado(habitaciones));
 			}
 		}
-	return resultados;
+		return resultados;
 	}
 
 	private Resultado armarResultado(List<Habitacion> habitaciones) {
