@@ -15,7 +15,7 @@ import modelo.Usuario;
 public class UsuarioTest {
 
 	@Test
-	public void test_verQueLePuedoHacerUnaReserva() {
+	public void test_verQueLeAgregarUnaReserva() {
 		Reserva reserva = mock(Reserva.class);
 		
 		Usuario usuario = new Usuario();
@@ -50,7 +50,7 @@ public class UsuarioTest {
 		Usuario usuario = new Usuario();
 		usuario.agregarReserva(reserva);
 		
-		assertEquals(1,usuario.getReservas(ciudad).size());
+		assertEquals(1,usuario.getReservasDeUnaCiudad(ciudad).size());
 	}
 	
 	@Test

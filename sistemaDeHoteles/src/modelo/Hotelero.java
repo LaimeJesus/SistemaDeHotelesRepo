@@ -34,14 +34,14 @@ public class Hotelero {
 		ArrayList<Reserva> rs = new ArrayList<Reserva>();
 		
 		for (Reserva r : this.getReservasActuales()) {
-			if (r.getPeriodo().getFechaInicio().isAfter(hoyDentorDeNDias(dias)))
+			if (r.getPeriodo().getFechaInicio().isAfter(hoyMasNDias(dias)))
 				rs.add(r);
 		}
 		
 		return rs;
 	}
 
-	private ReadableInstant hoyDentorDeNDias(Integer dias) {
+	private ReadableInstant hoyMasNDias(Integer dias) {
 		DateTime dt = new DateTime();
 		return dt.now().plusDays(dias);
 	}

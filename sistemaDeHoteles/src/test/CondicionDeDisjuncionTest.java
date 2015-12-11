@@ -5,7 +5,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import modelo.Condicion;
-
+import modelo.CondicionDeConjuncion;
 import modelo.CondicionDeDisjuncion;
 import modelo.CondicionDeHuespedes;
 import modelo.CondicionDeNombreDeHotel;
@@ -21,6 +21,8 @@ public class CondicionDeDisjuncionTest extends TestCase{
 
 	List<Condicion> mockList;
 	CondicionDeDisjuncion sut;
+	
+	CondicionDeNombreDeHotel hoja;
 
 
 	@Before
@@ -64,4 +66,12 @@ public class CondicionDeDisjuncionTest extends TestCase{
 		int current = sut.condiciones.size();
 		assertEquals(2, current);
 	}
+	public void testVerQueComponerUnaCondicionDeDisjuncionConUnaCondicionHojaFormaOtraCondicionDeConjuncion(){
+		assertEquals(CondicionDeDisjuncion.class, sut.composeToDisjuncion(hoja).getClass());
+	}
+	
+	public void testVerQueComponerUnaCondicionDeConjuncionConUnaHojaFormaUnaCondicionDeConjuncion(){
+		assertEquals(CondicionDeConjuncion.class, sut.composeToConjuncion(hoja).getClass());
+	}
+
 }

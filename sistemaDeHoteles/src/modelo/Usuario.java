@@ -23,7 +23,7 @@ public class Usuario {
 		reservas.remove(reserva);
 	}
 
-	public List<Reserva> getReservas(String ciudad) {
+	public List<Reserva> getReservasDeUnaCiudad(String ciudad) {
 		List<Reserva> rs = new ArrayList<Reserva>();
 		
 		for (Reserva r : reservas) {
