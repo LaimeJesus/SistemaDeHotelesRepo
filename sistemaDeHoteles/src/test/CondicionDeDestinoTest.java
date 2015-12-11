@@ -2,6 +2,7 @@ package test;
 
 import modelo.*;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -16,6 +17,7 @@ public class CondicionDeDestinoTest extends TestCase {
 	private Habitacion mock_habitacion;
 	private CondicionDeDestino sut;
 
+	@Before
 	public void setUp(){
 		//
 		mock_habitacion = Mockito.mock(Habitacion.class);
@@ -42,28 +44,5 @@ public class CondicionDeDestinoTest extends TestCase {
 		//verify
 		assertNotSame(destino_not_expected, sut.getCondicion());
 		assertFalse(sut.satisface(mock_habitacion));
-	}
-
-	public void testCasoBordeNombreDeCiudadNull(){
-		//arrange
-		Mockito.when(mock_habitacion.getHotelNombreDeCiudad()).thenThrow(new NullPointerException());
-		//verify
-		try {
-			sut.satisface(mock_habitacion);
-		}catch(NullPointerException expected){
-			assertEquals(NullPointerException.class, expected.getClass());
-			Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
-			}
-		}
-  
-	public void testCasoBordeCondicionNull(){
-		//arrange
-		sut = new CondicionDeDestino(null);
-		try {
-			sut.satisface(mock_habitacion);
-		}catch(NullPointerException expected){
-			assertEquals(NullPointerException.class, expected.getClass());
-			Mockito.verify(mock_habitacion).getHotelNombreDeCiudad();
-			}
 	}
 }
