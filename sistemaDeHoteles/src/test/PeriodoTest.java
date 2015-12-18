@@ -19,7 +19,6 @@ public class PeriodoTest extends TestCase{
 	private ReadableInstant fechaFinMock;
 	private Periodo sut;
 	
-	
 	//creo que le faltan un par de test a esta clase
 	public void setUp(){
 		fechaInicioMock = Mockito.mock(ReadableInstant.class);
@@ -35,6 +34,7 @@ public class PeriodoTest extends TestCase{
 	public void test_verQueUnaFechaPerteneceAUnPeriodo() {
 		assertTrue(periodo.perteneceAlPeriodo(fecha));
 	}
+
 	public void testVerQueSeSetearonBienLosConstructoresDelPeriodo(){
 
 		assertEquals(fechaInicioMock, sut.getFechaInicio());

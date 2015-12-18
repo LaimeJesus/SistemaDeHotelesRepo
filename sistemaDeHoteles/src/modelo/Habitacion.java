@@ -110,7 +110,7 @@ public class Habitacion {
 
 	public List<Reserva> getReservas() {
 		// TODO Auto-generated method stub
-		return reservas;
+		return this.reservas;
 	}
 
 }

@@ -6,30 +6,45 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.ReadableInstant;
 
+/**
+ * @author Lucas Fedele, Jesus Laime
+ *
+ */
 public class Hotelero {
-
+	
 	private ArrayList<Hotel> hoteles = new ArrayList<Hotel>();
 
+	/**
+	 * @param hotel: es un hotel
+	 */
 	public void addHotel(Hotel hotel) {
 		hoteles.add(hotel);
 	}
 
+	/**
+	 * @return mis hoteles
+	 */
 	public List<Hotel> getHoteles() {
 		return hoteles;
 	}
 
+	/**
+	 * @return las reservas que tienen sus hoteles
+	 */
 	public List<Reserva> getReservasActuales() {
 		ArrayList<Reserva> rs = new ArrayList<Reserva>();
 		
 		for (Hotel h : hoteles) {
-			for (Habitacion hab : h.getHabitaciones()) {
-				rs.addAll(hab.getReservas());
-			}
+			rs.addAll(h.getReservas());
 		}
 		
 		return rs;
 	}
 
+	/**
+	 * @param dias: es un numero
+	 * @return las reservas que estan entre el dia de actual y los siguientes N dias
+	 */
 	public List<Reserva> getReservasDentroDeNDias(Integer dias) {
 		ArrayList<Reserva> rs = new ArrayList<Reserva>();
 		
@@ -41,6 +56,10 @@ public class Hotelero {
 		return rs;
 	}
 
+	/**
+	 * @param dias: es un numero
+	 * @return la fecha actual sumado N dias
+	 */
 	private ReadableInstant hoyMasNDias(Integer dias) {
 		DateTime dt = new DateTime();
 		return dt.now().plusDays(dias);
