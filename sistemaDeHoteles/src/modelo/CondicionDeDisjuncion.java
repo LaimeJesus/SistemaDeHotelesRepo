@@ -2,13 +2,21 @@ package modelo;
 
 import java.util.List;
 
+/**
+ * @author Jesus Laime, Lucas Fedele
+ *
+ */
+
 public class CondicionDeDisjuncion extends Condicion {
 
 	public List<Condicion> condiciones;
 
-	public CondicionDeDisjuncion(List<Condicion> mockList) {
+	/**
+	 * @param grupoDeCondiciones: es una lista de condiciones
+	 */
+	public CondicionDeDisjuncion(List<Condicion> grupoDeCondiciones) {
 		// TODO Auto-generated constructor stub
-		this.condiciones = mockList;
+		this.condiciones = grupoDeCondiciones;
 	}
 
 	@Override

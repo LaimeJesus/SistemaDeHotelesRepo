@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import modelo.Condicion;
 import modelo.Habitacion;
 import modelo.Hotel;
+import modelo.Servicio;
 
 public class HotelTest extends TestCase{
 	
@@ -17,6 +18,7 @@ public class HotelTest extends TestCase{
 	private List<Habitacion> listaHabitacionesMock;
 	private Habitacion habitacionMock;
 	private Condicion condicionMock;
+	private Servicio servicioMock;
 
 	public void setUp(){
 
@@ -27,6 +29,9 @@ public class HotelTest extends TestCase{
 		listaHabitacionesMock = new ArrayList<Habitacion>();
 		listaHabitacionesMock.add(habitacionMock);
 		sut = new Hotel(nombreMock, ciudadMock, listaHabitacionesMock);
+	
+		servicioMock = mock(Servicio.class);
+		sut.agregarServicio(servicioMock);
 	}
 	
 	public void testVerQueHotelSeSeteoEnCadaHabitacion(){
@@ -52,9 +57,17 @@ public class HotelTest extends TestCase{
 	public void testVerQueFuncionaGetReservas(){
 		sut.getReservas();
 		verify(habitacionMock).getReservas();
-		
-		
-		
+	}
+	
+	public void test_veoQueSePuedaAgregarUnServicio(){
+		assertEquals(1, sut.getServicios().size());
+	}
+	public void test_veoQueSePuedaQuitarUnServicio(){
+		sut.quitarServicio(servicioMock);
+		assertEquals(0,sut.getServicios().size());
+	}
+	public void test_verSiHotelTieneServicio(){
+		assertTrue(sut.tieneServicio(servicioMock));
 	}
 	
 }

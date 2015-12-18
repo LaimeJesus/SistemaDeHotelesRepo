@@ -15,7 +15,7 @@ import org.joda.time.ReadableInstant;
 public class Usuario {
 	
 	/**
-	 * @see si hubiesemos hecho el codigo en java 1.8 podriamos haber usado un filter o algo parecido para las reservas y no haber
+	 * si hubiesemos hecho el codigo en java 1.8 podriamos haber usado un filter o algo parecido para las reservas y no haber
 	 * repetido tanto codigo
 	 */
 	

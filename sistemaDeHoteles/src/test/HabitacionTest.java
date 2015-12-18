@@ -18,6 +18,7 @@ import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.Periodo;
 import modelo.Reserva;
+import modelo.Servicio;
 
 public class HabitacionTest extends TestCase{
 	
@@ -32,6 +33,7 @@ public class HabitacionTest extends TestCase{
 	private Habitacion habitacion = new Habitacion(null);
 	private Periodo periodoReserva = new Periodo(new DateTime(1999,1,1,1,1),new DateTime(2555,1,1,1,1));
 	private Reserva reserva = new Reserva(habitacion, periodoReserva, "pepe");
+	private Servicio servicioMock;
 	
 	public void setUp(){
 		
@@ -49,6 +51,10 @@ public class HabitacionTest extends TestCase{
 		
 		sut.agregarReserva(mockReserva);
 		sut.setHotel(mockHotel);
+		
+		servicioMock = mock(Servicio.class);
+		sut.agregarServicio(servicioMock);
+
 	}
 	
 	public void testVeoQueDevuelveElNombreDelHotelAlQuePertence(){
@@ -117,4 +123,20 @@ public class HabitacionTest extends TestCase{
 		assertTrue(habitacion.estaDisponible(new Periodo(new DateTime(2000,1,1,1,1), new DateTime(2001,1,1,1,1))));
 	}
 
+	public void test_veoQueSePuedaAgregarUnServicio(){
+		assertEquals(1, sut.getServicios().size());
+	}
+	public void test_veoQueSePuedaQuitarUnServicio(){
+		sut.quitarServicio(servicioMock);
+		assertEquals(0,sut.getServicios().size());
+	}
+	public void test_veoQueFuncionaPedirCostoDeServicios(){
+		sut.costoDeServicios();
+		verify(servicioMock).getPrecio();
+	}
+	
+	public void test_verSiElHotelAlQuePerteneceEstaHabitacionTieneUnServicio(){
+		sut.verHotelTieneServicio(servicioMock);
+		verify(mockHotel).tieneServicio(servicioMock);
+	}
 }

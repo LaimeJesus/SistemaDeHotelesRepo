@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Hotel: representa la abstraccion de un hotel en nuestro sistema de reservas y busqueda de hoteles.
+ * Para eso esta sabe su nombre, la ciudad en la que se encuentra, y las habitaciones que tiene
  * @author Jesus Laime 
  *
  */
@@ -12,6 +14,7 @@ public class Hotel {
 	private String ciudad;
 	private List<Habitacion> habitaciones;
 	private String name;
+	private List<Servicio> servicios;
 	
 	
 	/**
@@ -23,6 +26,7 @@ public class Hotel {
 		this.ciudad = ciudad;
 		this.setHabitaciones(habitaciones);
 		this.name = name;
+		this.servicios = new ArrayList<Servicio>();
 	}
 	
 	/**
@@ -83,6 +87,23 @@ public class Hotel {
 			result.addAll(hab.getReservas());
 		}
 		return result;
+	}
+	
+	public void agregarServicio(Servicio s){
+		this.servicios.add(s);
+	}
+	
+	public void quitarServicio(Servicio s){
+		this.servicios.remove(s);
+	}
+	
+	public List<Servicio> getServicios(){
+		return this.servicios;
+	}
+
+	public boolean tieneServicio(Servicio servicio) {
+		// TODO Auto-generated method stub
+		return this.getServicios().contains(servicio);
 	}
 
 }

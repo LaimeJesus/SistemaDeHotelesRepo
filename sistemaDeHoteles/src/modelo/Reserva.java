@@ -1,5 +1,9 @@
 package modelo;
 
+/**
+ * @author Jesus Laime, Lucas Fedele
+ *
+ */
 public class Reserva {
 
 	private Habitacion habitacion;

@@ -50,4 +50,11 @@ public class PeriodoTest extends TestCase{
 		Mockito.verify(fechaFinMock).isAfter(fecha);		
 	}
 	
+	@Test
+	public void test_verQueFuncionaInicializarUnPeriodoConUnSoloArgumento(){
+		sut = new Periodo(fechaInicioMock);
+		assertEquals(fechaInicioMock, sut.getFechaInicio());
+		assertEquals(fechaInicioMock, sut.getFechaFin());
+	}
+	
 }
